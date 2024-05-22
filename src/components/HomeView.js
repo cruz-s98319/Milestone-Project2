@@ -1,5 +1,7 @@
 import React from 'react'
 
+import ListForm from './ListForm'
+
 function HomeView() {
     return (
         <div>
@@ -7,7 +9,9 @@ function HomeView() {
             <div>
                 {/* Placeholders for where the different to-do lists will show up in the home page */}
                 <div>
-                    <h2>List 1</h2> 
+                    <h2>List 1</h2>
+                    {/* Placeholder for submit form */}
+                    <ListForm />
                 </div>
                 <div>
                     <h2>List 2</h2>
