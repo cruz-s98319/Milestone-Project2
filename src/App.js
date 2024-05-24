@@ -7,12 +7,16 @@ import './App.css'
 import HomeView from './components/HomeView'
 
 function App() {
+  const [message, setMessage] = useState();
 
   return (
     <div>
-      <header>
-        <HomeView />
-      </header>
+      <h1>To-Do List</h1>
+        <Router>
+          <Routes>
+            <Route path='/' element={<HomeView />}/>
+          </Routes>
+        </Router>
     </div>
   );
 }

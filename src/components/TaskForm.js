@@ -1,15 +1,28 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 
 // Will need to connect submit form to a mongo database
-function TaskForm() {
+function TaskForm(addTask) {
+    const [tasks, setTasks] = useState();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (tasks) {
+            addTask(tasks);
+            setTasks('');
+        }
+    }
+    
     return (
         <div>
             <h2>Add Task</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label>Task</label>
                     <input
                         type="text"
+                        value={tasks}
+                        onChange={(e) => setTasks(e.target.tasks)}
                         placeholder="enter task"
                     />
                 </div>
@@ -26,7 +39,7 @@ function TaskForm() {
                         type="datetime-local"
                     />
                 </div>
-                <button>Add Task</button>
+                <input type="submit"/>
             </form>
         </div>
     )

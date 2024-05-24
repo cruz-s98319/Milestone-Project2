@@ -5,13 +5,14 @@ import React from 'react'
 function ListForm() {
     return (
         <div>
-            <h2>Add List</h2>
+            <h2>Add A New List</h2>
             <form>
                 <div>
                     <label>List Name</label>
                     <input
                         type="text"
                         placeholder="enter list name"
+                        required
                     />
                 </div>
                 <div>
