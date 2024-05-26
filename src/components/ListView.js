@@ -2,6 +2,8 @@ import React from 'react'
 
 // Bulleted list of all tasks added to the to-do list groups
 function ListView({ tasks }) {
+    console.log('Rendering tasks successful: ', tasks);
+    
     return (
         <div>
             {/* Connect lists to list name */}
@@ -13,15 +15,6 @@ function ListView({ tasks }) {
                         {task.task} - {task.notes} - {task.deadline}
                     </li>
                 ))}
-                {/* <li>
-                    Task 1
-                </li>
-                <li>
-                    Task 2
-                </li>
-                <li>
-                    Task 3
-                </li> */}
             </ul>
         </div>
     )

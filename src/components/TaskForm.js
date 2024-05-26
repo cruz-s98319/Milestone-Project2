@@ -13,6 +13,13 @@ function TaskForm({ addTask }) {
         if (value && notes && deadline) {
             const newTask = { task: value, notes: notes, deadline: deadline };
 
+            // prop passed down
+            addTask(newTask);
+
+            setValue('');
+            setNotes('');
+            setDeadline('');
+
             // Figure out how to connect POST request later
         //     axios.post('http://localhost:3000/addTask', newTask)
         //         .then(response => {
@@ -25,6 +32,8 @@ function TaskForm({ addTask }) {
         //             console.error('Error: Task not added')
         //         });
         // }
+        } else {
+            console.log('Error')
         }
     }
     
