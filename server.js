@@ -20,6 +20,19 @@ app.get('/', (req, res) => {
     res.status('200').json(todos)
 })
 
+app.post('/addTask', (req, res) => {
+    const newTask = new Task({
+        task: req.body.task,
+        notes: req.body.notes,
+        deadline: req.body.deadline
+    })
+
+    newTask.save(
+        .then(task => res.json(task))
+        .catch(err => res.status(400).json('Error: ' + err))
+    )
+})
+
 app.listen(PORT, () => {
     console.log(`Server running port: ${PORT}`)
 })
