@@ -14,7 +14,12 @@ app.use(express.urlencoded({extended: true}))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+
 // ROUTES
 app.get('/', (req, res) => {
-    res.send('To-Do List')
+    res.status('200').json(todos)
+})
+
+app.listen(PORT, () => {
+    console.log(`Server running port: ${PORT}`)
 })
