@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 // Will need to connect submit form to a mongo database
-function TaskForm({addTask}) {
+function TaskForm({ addTask }) {
     const [value, setValue] = useState('');
     const [notes, setNotes] = useState('');
     const [deadline, setDeadline] = useState('');
@@ -13,16 +13,18 @@ function TaskForm({addTask}) {
         if (value && notes && deadline) {
             const newTask = { task: value, notes: notes, deadline: deadline };
 
-            axios.post('http://localhost:3000/addTask', newTask)
-                .then(response => {
-                    addTask(response.data);
-                    setValue('');
-                    setNotes('');
-                    setDeadline('');
-                })
-                .catch(error => {
-                    console.error('Error: Task not added')
-                });
+            // Figure out how to connect POST request later
+        //     axios.post('http://localhost:3000/addTask', newTask)
+        //         .then(response => {
+        //             addTask(response.data);
+        //             setValue('');
+        //             setNotes('');
+        //             setDeadline('');
+        //         })
+        //         .catch(error => {
+        //             console.error('Error: Task not added')
+        //         });
+        // }
         }
     }
     
@@ -59,7 +61,7 @@ function TaskForm({addTask}) {
                 <input type="submit" value="Add Task"/>
             </form>
         </div>
-    )
+    );
 }
 
 export default TaskForm

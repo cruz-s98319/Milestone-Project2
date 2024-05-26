@@ -3,8 +3,17 @@ import TaskForm from './TaskForm'
 import ListView from './ListView'
 
 function TaskManager() {
-    return (
+    const [tasks, setTasks] = useState([]);
 
+    const addTask = (task) => {
+        setTasks([...tasks, task]);
+    };
+    
+    return (
+        <div>
+            <TaskForm addTask={addTask} />
+            <ListView tasks={tasks} />
+        </div>
     )
 }
 
