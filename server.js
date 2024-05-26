@@ -14,7 +14,13 @@ app.use(express.urlencoded({extended: true}))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/taskdb', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
+app.use(bodyParser.json());
+app.use(cors());
 
 // ROUTES
 app.get('/', (req, res) => {
