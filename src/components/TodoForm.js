@@ -1,8 +1,21 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 
-function TodoForm() {
+function TodoForm({ addList }) {
+    const [listName, setListName] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (listName) {
+            const newList = { name: listName };
+            console.log('New List:', newList);
+
+            addList(newList);
+
+            setListName('');
+        } else {
+            console.log('List name is required');
+        }
+    }
     
     return (
         <div>
@@ -12,10 +25,12 @@ function TodoForm() {
                     <label>List Name</label>
                     <input
                         type="text"
+                        value={listName}
+                        onChange={(e) => setListName(e.target.value)}
                         placeholder="enter name"
                     />
                 </div>
-                <input type="submit"/>
+                <input type="submit" value="Add List"/>
             </form>
         </div>
     )

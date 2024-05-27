@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TodoForm from './TodoForm'
 import TaskManager from './TaskManager'
 
-function TodoManager() {
+function TodoManager({ addList }) {
     const [lists, setLists] = useState([]);
 
     const assList = (list) => {
@@ -21,3 +21,5 @@ function TodoManager() {
         </div>
     )
 }
+
+export default TodoManager
