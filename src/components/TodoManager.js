@@ -12,7 +12,7 @@ function TodoManager() {
     return(
         <div>
             <TodoForm addList={addList} />
-            <h2>To-Do Lists</h2>
+            <h2>Categories</h2>
             <ul>
                 {lists.map((list, index) => (
                     <li key={index}>

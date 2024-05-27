@@ -1,42 +1,26 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
 
-// Will need to connect submit form to a mongo database
-function TaskForm({ addTask }) {
+function TaskForm({ addTask, listId }) {
     const [value, setValue] = useState('');
     const [notes, setNotes] = useState('');
-    const [deadline, setDeadline] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (value && notes && deadline) {
-            const newTask = { task: value, notes: notes, deadline: deadline };
+        if (value && notes) {
+            const newTask = { task: value, notes: notes, listId: listId };
+            console.log('New Task:', newTask);  // Log the new task
 
-            // prop passed down
+            // Adding the task to the list
             addTask(newTask);
 
+            // Clearing the form fields
             setValue('');
             setNotes('');
-            setDeadline('');
-
-            // Figure out how to connect POST request later
-        //     axios.post('http://localhost:3000/addTask', newTask)
-        //         .then(response => {
-        //             addTask(response.data);
-        //             setValue('');
-        //             setNotes('');
-        //             setDeadline('');
-        //         })
-        //         .catch(error => {
-        //             console.error('Error: Task not added')
-        //         });
-        // }
         } else {
-            console.log('Error')
+            console.log('Incomplete task details');
         }
-    }
-    
+    };
+
     return (
         <div>
             <h2>Add Task</h2>
@@ -59,18 +43,10 @@ function TaskForm({ addTask }) {
                         placeholder="enter notes"
                     />
                 </div>
-                <div>
-                    <label>Deadline</label>
-                    <input
-                        type="datetime-local"
-                        value={deadline}
-                        onChange={(e) => setDeadline(e.target.value)}
-                    />
-                </div>
-                <input type="submit" value="Add Task"/>
+                <input type="submit" value="Add Task" />
             </form>
         </div>
     );
 }
 
-export default TaskForm
+export default TaskForm;
