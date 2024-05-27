@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import TodoForm from './TodoForm'
 import TaskManager from './TaskManager'
 
-function TodoManager({ addList }) {
+function TodoManager() {
     const [lists, setLists] = useState([]);
 
-    const assList = (list) => {
+    const addList = (list) => {
         setLists([...lists, list]);
     };
 
