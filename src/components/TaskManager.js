@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import TaskForm from './TaskForm'
 import ListView from './ListView'
 
@@ -6,7 +7,6 @@ function TaskManager() {
     const [tasks, setTasks] = useState([]);
 
     const addTask = (task) => {
-        // console.log('Adding task successful: ', task);
         setTasks([...tasks, task]);
     };
     

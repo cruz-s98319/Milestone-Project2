@@ -7,7 +7,6 @@ function TodoForm({ addList }) {
         e.preventDefault();
         if (listName) {
             const newList = { name: listName };
-            console.log('New List:', newList);
 
             addList(newList);
 
