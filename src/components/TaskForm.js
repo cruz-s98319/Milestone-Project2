@@ -20,6 +20,7 @@ function TaskForm(addTask) {
                 <div>
                     <label>Task</label>
                     <input
+                        id="taskName"
                         type="text"
                         value={tasks}
                         onChange={(e) => setTasks(e.target.tasks)}
@@ -29,6 +30,7 @@ function TaskForm(addTask) {
                 <div>
                     <label>Notes</label>
                     <input
+                        id="taskNotes"
                         type="text"
                         placeholder="enter notes"
                     />
@@ -39,7 +41,9 @@ function TaskForm(addTask) {
                         type="datetime-local"
                     />
                 </div>
-                <input type="submit"/>
+                <input id="subButton" type="submit"/>
+                <div class = "addedTask" id = "taskContainer">
+                </div>
             </form>
         </div>
     )
