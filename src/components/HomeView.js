@@ -5,10 +5,13 @@ import TaskManager from './TaskManager'
 
 function HomeView() {
     return (
-        <Routes>
-            <Route path="/" element={<TodoManager />} />
-            <Route path="/list/:listId" element={<TaskManager />} />
-        </Routes>
+        // <Routes>
+        //     <Route path="/" element={<TodoManager />} />
+        //     <Route path="/list/:listId" element={<TaskManager />} />
+        // </Routes>
+        <div>
+            <TodoManager />
+        </div>
     )
 }
 
