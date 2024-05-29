@@ -11,12 +11,12 @@ function TodoManager() {
     };
 
     return(
-        <div>
+        <div className="container">
             <TodoForm addList={addList} />
             <h2>Categories</h2>
-            <ul>
+            <ul className="list-group">
                 {lists.map((list, index) => (
-                    <li key={index}>
+                    <li key={index} className="list-group-item">
                         <h3>
                             {list.name}
                         </h3>
