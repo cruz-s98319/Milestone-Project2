@@ -2,10 +2,10 @@ import React from 'react'
 
 // Will need to connect submit form to a mongo database
 // This will later be linked to the list page
-function ListForm() {
+function TodoList() {
     return (
         <div>
-            <h2>Add A New List</h2>
+            <h2>Add A New To-Do List</h2>
             <form>
                 <div>
                     <label>List Name</label>
@@ -28,4 +28,4 @@ function ListForm() {
     )
 }
 
-export default ListForm
+export default TodoList

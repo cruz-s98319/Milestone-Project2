@@ -1,18 +1,26 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 
-// Will need to connect submit form to a mongo database
-function TaskForm(addTask) {
-    const [tasks, setTasks] = useState();
+function TaskForm({ addTask, listId }) {
+    const [value, setValue] = useState('');
+    const [notes, setNotes] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (tasks) {
-            addTask(tasks);
-            setTasks('');
+        if (value && notes) {
+            const newTask = { task: value, notes: notes, listId: listId };
+            console.log('New Task:', newTask);  // Log the new task
+
+            // Adding the task to the list
+            addTask(newTask);
+
+            // Clearing the form fields
+            setValue('');
+            setNotes('');
+        } else {
+            console.log('Incomplete task details');
         }
-    }
-    
+    };
+
     return (
         <div>
             <h2>Add Task</h2>
@@ -21,8 +29,8 @@ function TaskForm(addTask) {
                     <label>Task</label>
                     <input
                         type="text"
-                        value={tasks}
-                        onChange={(e) => setTasks(e.target.tasks)}
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
                         placeholder="enter task"
                     />
                 </div>
@@ -30,19 +38,15 @@ function TaskForm(addTask) {
                     <label>Notes</label>
                     <input
                         type="text"
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
                         placeholder="enter notes"
                     />
                 </div>
-                <div>
-                    <label>Deadline</label>
-                    <input
-                        type="datetime-local"
-                    />
-                </div>
-                <input type="submit"/>
+                <input type="submit" value="Add Task" />
             </form>
         </div>
-    )
+    );
 }
 
-export default TaskForm
+export default TaskForm;
