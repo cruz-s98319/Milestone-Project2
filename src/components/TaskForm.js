@@ -1,18 +1,26 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 
-// Will need to connect submit form to a mongo database
-function TaskForm(addTask) {
-    const [tasks, setTasks] = useState();
+function TaskForm({ addTask, listId }) {
+    const [value, setValue] = useState('');
+    const [notes, setNotes] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (tasks) {
-            addTask(tasks);
-            setTasks('');
+        if (value && notes) {
+            const newTask = { task: value, notes: notes, listId: listId };
+            console.log('New Task:', newTask);  // Log the new task
+
+            // Adding the task to the list
+            addTask(newTask);
+
+            // Clearing the form fields
+            setValue('');
+            setNotes('');
+        } else {
+            console.log('Incomplete task details');
         }
-    }
-    
+    };
+
     return (
         <div>
             <h2>Add Task</h2>
@@ -22,8 +30,8 @@ function TaskForm(addTask) {
                     <input
                         id="taskName"
                         type="text"
-                        value={tasks}
-                        onChange={(e) => setTasks(e.target.tasks)}
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
                         placeholder="enter task"
                     />
                 </div>
@@ -32,9 +40,12 @@ function TaskForm(addTask) {
                     <input
                         id="taskNotes"
                         type="text"
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
                         placeholder="enter notes"
                     />
                 </div>
+<<<<<<< HEAD
                 <div>
                     <label>Deadline</label>
                     <input
@@ -44,9 +55,12 @@ function TaskForm(addTask) {
                 <input id="subButton" type="submit"/>
                 <div class = "addedTask" id = "taskContainer">
                 </div>
+=======
+                <input type="submit" value="Add Task" />
+>>>>>>> origin/main
             </form>
         </div>
-    )
+    );
 }
 
-export default TaskForm
+export default TaskForm;

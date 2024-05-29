@@ -14,7 +14,32 @@ app.use(express.urlencoded({extended: true}))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/taskdb', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
+
+app.use(bodyParser.json());
+app.use(cors());
+
 // ROUTES
 app.get('/', (req, res) => {
-    res.send('To-Do List')
+    res.status('200').json(todos)
+})
+
+app.post('/addTask', (req, res) => {
+    const newTask = new Task({
+        task: req.body.task,
+        notes: req.body.notes,
+        deadline: req.body.deadline
+    })
+
+    newTask.save(
+        .then(task => res.json(task))
+        .catch(err => res.status(400).json('Error: ' + err))
+    )
+})
+
+app.listen(PORT, () => {
+    console.log(`Server running port: ${PORT}`)
 })
