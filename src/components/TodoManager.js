@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import TodoForm from './TodoForm'
 import TaskManager from './TaskManager'
-// import { Link } from 'react-router-dom'
 
 function TodoManager() {
     const [lists, setLists] = useState([]);
@@ -14,9 +13,9 @@ function TodoManager() {
         <div className="container">
             <TodoForm addList={addList} />
             <h2>Categories</h2>
-            <ul className="list-group">
+            <ul className="row align-items-start">
                 {lists.map((list, index) => (
-                    <li key={index} className="list-group-item">
+                    <li key={index} className="col-6">
                         <h3>
                             {list.name}
                         </h3>

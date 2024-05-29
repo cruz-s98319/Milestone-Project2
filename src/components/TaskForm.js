@@ -20,10 +20,10 @@ function TaskForm({ addTask }) {
 
     return (
         <div>
-            <h2>Add Task</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Task</label>
+            <h5>Add Task</h5>
+            <form onSubmit={handleSubmit} className="mb-3">
+                <div className="mb-3">
+                    <label className="form-label">Task</label>
                     <input
                         type="text"
                         value={value}
@@ -31,7 +31,7 @@ function TaskForm({ addTask }) {
                         placeholder="enter task"
                     />
                 </div>
-                <input type="submit" value="Add Task" />
+                <input type="submit" value="Enter" />
             </form>
         </div>
     );
