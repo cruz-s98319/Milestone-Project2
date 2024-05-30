@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // Bulleted list of all tasks added to the to-do list groups
-function ListView({ tasks, updateTask }) {
+function ListView({ tasks, updateTask, deleteTask }) {
     const [editIndex, setEditIndex] = useState(null);
     const [editValue, setEditValue] = useState('');
 
@@ -44,6 +44,9 @@ function ListView({ tasks, updateTask }) {
                                     Edit
                                 </button>
                             )}
+                            <button onClick={() => deleteTask(index)}>
+                                Delete
+                            </button>
                         </div>
                     </li>
                 ))}

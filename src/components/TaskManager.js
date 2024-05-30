@@ -16,6 +16,11 @@ function TaskManager() {
         const updatedTasks = tasks.map((task, i) => (i === index ? updatedTask : task));
         setTasks(updatedTasks);
     };
+    
+    const deleteTask = (index) => {
+        const updatedTasks = tasks.filter((task, i) => i !== index);
+        setTasks(updatedTasks);
+    };
 
     // used for the database later on
     // useEffect(() => {
@@ -25,7 +30,7 @@ function TaskManager() {
     return (
         <div>
             <TaskForm addTask={addTask} />
-            <ListView tasks={tasks} updateTask={updateTask} />
+            <ListView tasks={tasks} updateTask={updateTask} deleteTask={deleteTask} />
         </div>
     )
 }
