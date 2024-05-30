@@ -14,7 +14,7 @@ function TodoForm({ addList }) {
         } else {
             console.log('List name is required');
         }
-    }
+    };
     
     return (
         <div>

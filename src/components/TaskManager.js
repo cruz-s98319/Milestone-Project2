@@ -12,15 +12,20 @@ function TaskManager() {
         setTasks([...tasks, task]);
     };
 
-    useEffect(() => {
-        console.log(`Fetching tasks for listId: ${listId}`)
-    }, [listId]);
+    const updateTask = (index, updatedTask) => {
+        const updatedTasks = tasks.map((task, i) => (i === index ? updatedTask : task));
+        setTasks(updatedTasks);
+    };
+
+    // used for the database later on
+    // useEffect(() => {
+    //     console.log(`Fetching tasks for listId: ${listId}`)
+    // }, [listId]);
     
     return (
         <div>
-            {/* <h2>Tasks for List {listId}</h2> */}
             <TaskForm addTask={addTask} />
-            <ListView tasks={tasks} />
+            <ListView tasks={tasks} updateTask={updateTask} />
         </div>
     )
 }
