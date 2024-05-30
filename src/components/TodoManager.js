@@ -5,6 +5,7 @@ import TaskManager from './TaskManager'
 function TodoManager() {
     const [lists, setLists] = useState([]);
 
+    // Handles changes when adding a new to-do list
     const addList = (list) => {
         setLists([...lists, list]);
     };
