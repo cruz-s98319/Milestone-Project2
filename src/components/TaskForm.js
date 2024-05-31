@@ -45,7 +45,6 @@ function TaskForm({ addTask, listId }) {
                         placeholder="enter notes"
                     />
                 </div>
-<<<<<<< HEAD
                 <div>
                     <label>Deadline</label>
                     <input
@@ -55,9 +54,6 @@ function TaskForm({ addTask, listId }) {
                 <input id="subButton" type="submit"/>
                 <div class = "addedTask" id = "taskContainer">
                 </div>
-=======
-                <input type="submit" value="Add Task" />
->>>>>>> origin/main
             </form>
         </div>
     );
