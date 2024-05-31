@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete task
-router.delete(':/id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         await Task.findByIdAndDelete(req.params.id);
         res.json({ message: 'Task successfully deleted' });
@@ -52,4 +52,4 @@ router.delete(':/id', async (req, res) => {
     }
 });
 
-module.exports = router
+module.exports = router;

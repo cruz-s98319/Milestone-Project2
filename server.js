@@ -1,45 +1,27 @@
-// Will need to figure out how to connect this to the react app
-const express = require('express')
-const mongoose = require('mongoose')
+require('dotenv').config();
 
-require('dotenv').config()
-const PORT = process.env.PORT
-const app = express()
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jsx')
-app.engine('jsx', require('express-react-views').createEngine())
-app.use(express.static('public'))
-app.use(express.urlencoded({extended: true}))
-const methodOverride = require('method-override')
-app.use(methodOverride('_method'))
+const taskRoutes = require('./routes/TaskRoutes');
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/taskdb', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+const app = express();
 
-app.use(bodyParser.json());
+// Middleware
 app.use(cors());
+app.use(express.json());
 
-// ROUTES
-app.get('/', (req, res) => {
-    res.status('200').json(todos)
-})
+// MongoDB connection string
+const MONGO_URI = process.env.MONGO_URI;
 
-app.post('/addTask', (req, res) => {
-    const newTask = new Task({
-        task: req.body.task,
-        notes: req.body.notes,
-        deadline: req.body.deadline
-    })
+// Routes
+app.use('/tasks', taskRoutes);
 
-    newTask.save(
-        .then(task => res.json(task))
-        .catch(err => res.status(400).json('Error: ' + err))
-    )
-})
-
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running port: ${PORT}`)
-})
+    console.log(`Server is running on port ${PORT}`);
+});
+
+
+mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => console.log('connected to mongo: ', process.env.MONGO_URI))
