@@ -12,7 +12,7 @@ function TaskManager() {
 
     const fetchTasks = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/tasks');
+            const response = await axios.get('http://localhost:3001/tasks');
             setTasks(response.data);
         } catch (error) {
             console.error('Error fetching tasks', error);
@@ -28,7 +28,7 @@ function TaskManager() {
     const updateTask = async  (index, updatedTask) => {
         const taskToUpdate = tasks[index];
         try {
-            const response = await axios.put(`http://localhost:5000/tasks/${taskToUpdate._id}`, updatedTask);
+            const response = await axios.put(`http://localhost:3001/tasks/${taskToUpdate._id}`, updatedTask);
             const updatedTasks = tasks.map((task, i) => (i === index ? response.data : task));
             setTasks(updatedTasks);
         } catch (error) {
@@ -40,7 +40,7 @@ function TaskManager() {
     const deleteTask = async (index) => {
         const taskToDelete = tasks[index];
         try {
-            await axios.delete(`http://localhost:5000/tasks/${taskToDelete._id}`);
+            await axios.delete(`http://localhost:3001/tasks/${taskToDelete._id}`);
             const updatedTasks = tasks.filter((task, i) => i !== index);
             setTasks(updatedTasks);
         } catch (error) {
