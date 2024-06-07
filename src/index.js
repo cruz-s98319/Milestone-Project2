@@ -4,6 +4,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TodoForm from './components/TodoForm';
+
+App.use(express.urlencoded({ extended: true }));
+
+App.set("view engine");
+
+//Get Method
+App.get('/', (re1, res) => {res.rednder(TodoForm)})
+
+//Post Method
+App.post('/',(req, res) => {
+  console.log(req.body);
+  });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
