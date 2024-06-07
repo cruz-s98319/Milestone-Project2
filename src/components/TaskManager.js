@@ -18,8 +18,8 @@ function TaskManager() {
     
     return (
         <div>
-            {/* <h2>Tasks for List {listId}</h2> */}
-            <TaskForm addTask={addTask} />
+            <h2>Tasks for List {listId}</h2>
+            <TaskForm addTask={addTask} listId={listId} />
             <ListView tasks={tasks} />
         </div>
     )

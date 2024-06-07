@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import TodoForm from './TodoForm'
-import TaskManager from './TaskManager'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function TodoManager() {
     const [lists, setLists] = useState([]);
@@ -17,10 +16,9 @@ function TodoManager() {
             <ul>
                 {lists.map((list, index) => (
                     <li key={index}>
-                        <h3>
+                        <Link to={`/list/${index}`}>
                             {list.name}
-                        </h3>
-                        <TaskManager listId={index} />
+                        </Link>
                     </li>
                 ))}
             </ul>

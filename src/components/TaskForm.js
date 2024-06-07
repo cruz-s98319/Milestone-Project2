@@ -28,7 +28,6 @@ function TaskForm({ addTask, listId }) {
                 <div>
                     <label>Task</label>
                     <input
-                        id="taskName"
                         type="text"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
@@ -38,22 +37,13 @@ function TaskForm({ addTask, listId }) {
                 <div>
                     <label>Notes</label>
                     <input
-                        id="taskNotes"
                         type="text"
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
                         placeholder="enter notes"
                     />
                 </div>
-                <div>
-                    <label>Deadline</label>
-                    <input
-                        type="datetime-local"
-                    />
-                </div>
-                <input id="subButton" type="submit"/>
-                <div class = "addedTask" id = "taskContainer">
-                </div>
+                <input type="submit" value="Add Task" />
             </form>
         </div>
     );

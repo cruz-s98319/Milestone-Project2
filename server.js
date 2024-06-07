@@ -1,11 +1,14 @@
 // Will need to figure out how to connect this to the react app
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 require('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
 
+app.use(cors())
+app.use(express.json())
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
@@ -15,9 +18,7 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/taskdb', { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
