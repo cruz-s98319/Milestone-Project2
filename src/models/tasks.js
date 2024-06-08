@@ -6,5 +6,5 @@ const TaskSchema = new mongoose.Schema ({
     deadline: Number,
 })
 
-const TaskModel = mongoose.model('tasks')
-module.exports = UserModel
+const TaskModel = mongoose.model('task', TaskSchema)
+module.exports = TaskModel
