@@ -2,7 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const TaskModel = require('./src/models/tasks')
+const TaskModel = require('./src/models/Tasks')
 
 require('dotenv').config()
 const PORT = process.env.PORT
@@ -20,7 +20,9 @@ app.use(methodOverride('_method'))
 
 
 // MongoDB connection
-mongoose.connect('mongodb://127.0.0.1:27017/', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://127.0.0.1:27017/todolist', { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
@@ -28,7 +30,38 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //Schemas
-app.post('/')
+const ListSchema = new mongoose.Schema({
+    listname: {
+        type: String,
+        required: true,
+        minlength: 3,
+    }
+})
+
+//Route for creating a new task
+app.post('/api/tasks', async (req, res) => {
+    try {
+        const {task, notes, deadline, listId} = req.body;
+        const newTask = new TaskModel ({ task, notes, deadline, listId})
+        await newTask.save();
+        res.status(201).send(newTask);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+})
+
+//Route to get all tasks for specific list 
+app.get('/api/lists/:listId/tasks', async (req, res) => {
+    try {
+        const { listId } = req.params;
+        const tasks = await TaskModel.find({ listId });
+        res.status(200).send(tasks);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+//app.post('/')
 
 // ROUTES
 app.get('/', (req, res) => {
@@ -41,7 +74,7 @@ app.get('/getTasks', (req, res) => {
     .catch(err => res.json(err))
 })
 
-app.post('/add', (req, res => {
+/*app.post('/add', (req, res => {
     const task = req.body.task;
     TaskModel.creae({
         task: task,
@@ -51,7 +84,7 @@ app.post('/add', (req, res => {
         .catch(err => res.json (err))
 }))
 
-/*app.post('/addTask', (req, res) => {
+app.post('/addTask', (req, res) => {
     const newTask = new Task({
         task: req.body.task,
         notes: req.body.notes,
