@@ -3,7 +3,7 @@ const mongooese = require('mongoose')
 const TaskSchema = new mongoose.Schema ({
     task: {String,
     required: true
-    }
+    },
     notes: String,
     deadline: Number,
     listId: {
