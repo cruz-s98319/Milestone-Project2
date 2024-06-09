@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function TaskForm({ addTask, listId }) {
     const [value, setValue] = useState('');
     const [notes, setNotes] = useState('');
+    const [error, setError] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async  (e) => {
         e.preventDefault();
         if (value && notes) {
-            const newTask = { task: value, notes: notes, listId: listId };
-            console.log('New Task:', newTask);  // Log the new task
-
-            // Adding the task to the list
-            addTask(newTask);
-
-            // Clearing the form fields
-            setValue('');
-            setNotes('');
+            const newTask = { task: value, notes, listId };
+            try{
+                const response = await axios.post('/api/tasks', newTask);
+                addTask(response.data);  // Update the task list in the parent component
+                setValue('');  // Clear the form fields
+                setNotes('');
+                setError('');
+            } catch (err) {
+                setError('Error adding task. Please try again.');
+                console.error('Error:', err);
+            }
         } else {
-            console.log('Incomplete task details');
+            setError('Incomplete task details');
         }
     };
 
@@ -43,6 +47,7 @@ function TaskForm({ addTask, listId }) {
                         placeholder="enter notes"
                     />
                 </div>
+                {error && <p style={{ color: 'red'}} > {error}</p> }
                 <input type="submit" value="Add Task" />
             </form>
         </div>
